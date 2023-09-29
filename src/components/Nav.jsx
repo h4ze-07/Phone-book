@@ -1,14 +1,15 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-const Nav = ({setContact, setForm}) => {
+const Nav = () => {
 
 
   return (
     <nav>
-      <ul className='nav'>
-        <li onClick={setContact}>Contacts</li>
-        <li onClick={setForm}>Form</li>
-      </ul>
+      <div className='nav'>
+        <NavLink to='/'>Contacts</NavLink>
+        <NavLink to='/form'>Form</NavLink>
+      </div>
     </nav>
   )
 }

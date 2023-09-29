@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react"
 
-import {Nav, Contacts, Form} from './components'
+import { Contacts, Form} from './components'
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import Root from "./components/Root"
 
 function App() {
 
   const API = 'https://jsonplaceholder.typicode.com/users?_limit=5'
 
-  const [page, setPage] = useState('list')
+  
   const [users, setUsers] = useState([])
+  const [modifiedUser, setModifiedUser] = useState(null)
+
+  const handleModifiedUser = (user) => {
+    setModifiedUser(user)
+  }
 
   useEffect(() => {
     const fetchAPI = async (api) => {
@@ -18,22 +25,27 @@ function App() {
     fetchAPI(API)
   }, [])
 
-  const setForm = () => {
-    setPage('form')
-  }
 
-  const setContact = () => {
-    setPage('list')
-  }
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Root />,
+      children: [
+        {
+          path: '/',
+          element: <Contacts users={users} setUsers={setUsers} handleModifiedUser={handleModifiedUser} />
+        },
+        {
+          path: '/form',
+          element: <Form users={users} setUsers={setUsers} modifiedUser={modifiedUser} setModifiedUser={setModifiedUser} />
+        }
+      ]
+    }
+  ])
 
   return (
-    <>
-      <Nav setContact={setContact} setForm={setForm} />
-      <main>
-        {page === 'list' && <Contacts users={users} setUsers={setUsers} />}
-        {page === 'form' && <Form users={users} setUsers={setUsers} setContact={setContact} />}
-      </main>
-    </>
+    <RouterProvider router={router} />
   )
 }
 

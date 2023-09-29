@@ -13,6 +13,17 @@
   cursor: pointer;
 }
 
+.nav a {
+  font-size: 20px;
+  color: blue;
+  font: 500;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: rgba(0, 0, 255, 0.4);
+}
+
 .container {
   padding: 10px 20px;
 }
@@ -33,4 +44,38 @@
   display: flex;
   gap: 10px;
   margin: 0px auto;
+}
+
+.modal {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: #00000087;
+}
+
+.innerModal {
+  background: white;
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px 40px;
+  border-radius: 10px;
+}
+
+.innerModal p {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
