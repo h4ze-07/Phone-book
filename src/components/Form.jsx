@@ -16,7 +16,7 @@ const Form = ({users, setUsers, modifiedUser, setModifiedUser}) => {
       userNameRef.current.value = modifiedUser.username;
       phoneRef.current.value = modifiedUser.phone;
     }
-  }, [modifiedUser])
+  }, [])
 
 
   const clearForm = () => {
@@ -37,7 +37,7 @@ const Form = ({users, setUsers, modifiedUser, setModifiedUser}) => {
       phone: phoneRef.current.value,
     }
 
-    let newUsers
+    let newUsers;
 
     if (modifiedUser) {
       newUsers = users.map((user) => {
